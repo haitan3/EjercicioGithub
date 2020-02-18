@@ -14,20 +14,38 @@ import Utilidades.Colores;
 public class Libro {
 
     private String TituloL;
-    private int numPag;
-    private String autorL;
+    private int numPag, numPagaComparar;
+    private String autorL, autorAcomparar;
     private boolean validar = true;
 
     private void pedirTituloL() {
-        TituloL = pedirDatos.PedirDatosTeclado.pedirString("\n\tInserte el Titulo del libro");
+        TituloL = pedirDatos.PedirDatosTeclado.pedirString("\n\tInserte el Titulo del libro: ");
+    }
+
+    public Libro() {
+        System.out.println("VAMOS A EMPEZAR PIDIENDOTE QUE INSERTE UN AUTOR Y UN NUMERO DE PAGINAS");
+        pedirAutorYNumPags();
     }
 
     private void pedirNumPag() {
-        numPag = pedirDatos.PedirDatosTeclado.pedirInt("\n\tInserte el numero de paginas");
+        numPag = pedirDatos.PedirDatosTeclado.pedirInt("\n\tInserte el numero de paginas: ");
     }
 
     private void pedirAutorL() {
-        autorL = pedirDatos.PedirDatosTeclado.pedirString("\n\tIndique el Autor del libro");
+        autorL = pedirDatos.PedirDatosTeclado.pedirString("\n\tIndique el Autor del libro: ");
+    }
+
+    private void pedirAutorAcomparar() {
+        autorAcomparar = pedirDatos.PedirDatosTeclado.pedirString("\n\tIndique el Autor del libro: ");
+    }
+
+    private void pedirNumPagsAcomparar() {
+        numPagaComparar = pedirDatos.PedirDatosTeclado.pedirInt("\n\tInserte el numero de paginas: ");
+    }
+
+    public void pedirAutorYNumPags() {
+        pedirAutorL();
+        pedirNumPag();
     }
 
     public void pedirTodosLosDatos() {
@@ -55,19 +73,37 @@ public class Libro {
     }
 
     public void validarLibros() {
+        int contadorIguales = 0;
         do {
             try {
 
-                pedirTodosLosDatos();
+                pedirAutorAcomparar();
+                pedirTituloL();
+                pedirNumPagsAcomparar();
+//Esto es comparando las pags
+                
+                        if(numPag==numPagaComparar){
+                           System.out.println(Colores.GREEN +"Los libros tienen el mismo numero de paginas!!! vamos a visualizar los datos: " + Colores.RESET);
+                              visualizarTodo();
+                                 //  contadorIguales++;
+                        }
+                 
                 if (numPag < 0) {
                     validar = false;
                 } else {
-                    visualizarTodo();
+                    if (autorAcomparar.equals(autorL)) {
+                        System.out.println(Colores.GREEN + "Los libros tienen el mismo autor!!! vamos a visualizar los datos: " + Colores.RESET);
+                        visualizarTodo();
+                        contadorIguales++;
+                    }
+                    System.out.println("De momento hay " + contadorIguales + " libros de ese mismo autor en la biblioteca");
                 }
             } catch (NumberFormatException e) {
-                System.out.println(Colores.RED+"HAS INSERTADO LETRAS, LO SIENTO MUCHO, CERRAMOS EL PROGRAMA"+Colores.RESET);
+                System.out.println(Colores.RED + "HAS INSERTADO LETRAS, LO SIENTO MUCHO, CERRAMOS EL PROGRAMA" + Colores.RESET);
                 break;
             }
         } while (validar == true);
     }
+    
+    //ir visualizando a medida que se vayan insertando libros y coincidan con el numero de paginas
 }
