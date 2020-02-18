@@ -36,10 +36,13 @@ que encontremos con la peor media*/
         float sueldo, sueldoMayor = Integer.MIN_VALUE, mediaBaja = Integer.MAX_VALUE;
         Empleado empleado = null;
         boolean insertarLetras = false;
+        boolean salir=false;
         Scanner scanner = new Scanner(System.in);
+        
         System.out.println("Elija una opción para comenzar con la gestión:"
-                + " \n\t Gestión de empleados. \n\t Gestión de alumnos.\n\t Gestión de libros.");
+                + "\n\t  1.- Gestión de empleados. \n\t  2.- Gestión de alumnos.\n\t  3.- Gestión de libros. \n\t  4.- Salir");
         opcion = scanner.nextInt();
+        while(!salir){
         if (opcion == 1) {
 
             Alumno alumno = new Alumno();
@@ -96,6 +99,16 @@ que encontremos con la peor media*/
         System.out.println("\n\t" + Colores.BLUE + "Edad: " + edad1);
         System.out.println("\n\t" + Colores.BLUE + "Sueldo: " + sueldoMayor);
 
+    }
+         if (opcion == 3) {
+               Libro book = new Libro();
+        System.out.println("Datos correctos, ahora vamos a insertar libros en la Biblioteca: ");
+        book.validarLibros();
+         }
+         if(opcion==4 ){
+             System.out.println("Salimos del programa, gracias por su gestión");
+             salir=true;
+         }
     }
     }
 
