@@ -6,6 +6,8 @@
 package ejerciciogithub;
 
 import Utilidades.Colores;
+import java.io.IOException;
+import java.util.InputMismatchException;
 
 /**
  *
@@ -82,13 +84,13 @@ public class Libro {
                 pedirNumPagsAcomparar();
 //Esto es comparando las pags
                 
-                        if(numPag==numPagaComparar){
+                        if(numPagaComparar==numPag){
                            System.out.println(Colores.GREEN +"Los libros tienen el mismo numero de paginas!!! vamos a visualizar los datos: " + Colores.RESET);
                               visualizarTodo();
                                  //  contadorIguales++;
                         }
                  
-                if (numPag < 0) {
+                if (numPagaComparar < 0) {
                     validar = false;
                 } else {
                     if (autorAcomparar.equals(autorL)) {
@@ -101,7 +103,7 @@ public class Libro {
             } catch (NumberFormatException e) {
                 System.out.println(Colores.RED + "HAS INSERTADO LETRAS, LO SIENTO MUCHO, CERRAMOS EL PROGRAMA" + Colores.RESET);
                 break;
-            }
+            } 
         } while (validar == true);
     }
     
